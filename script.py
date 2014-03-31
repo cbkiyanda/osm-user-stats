@@ -14,7 +14,8 @@ if __name__ == "__main__":
     except:
         print("Location doesn't exist")
         print("Call is 'python script.py [location]'")
-        print("Using default RN test location")
+        print("Defined locations:")
+        print(locations.keys())
     else:
         print("Fetching nodes for "+sys.argv[1])
         #create output node file name
@@ -36,9 +37,12 @@ if __name__ == "__main__":
         try:
             if (sys.argv[2] == "--production") :
                 imax = len(nodelist)
+                print("Do not use the '--production' mode yet.")
+                print("Need to confirm that api servers won't be overloaded.")
+                imax = 0
         except:
-            imax = 10
-        else:
+            imax = 10            
+        finally:
             i = 0
             user_counts = {}
             for s in nodelist : #loop through all nodes
